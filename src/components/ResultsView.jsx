@@ -92,7 +92,13 @@ export function ResultsView({ score, total, onRestart }) {
                     <button
                         className="glass-panel"
                         onClick={handleWhatsapp}
-                        style={{ padding: '12px 0', fontSize: '0.9rem', color: '#fff' }}
+                        style={{
+                            padding: '12px 0',
+                            fontSize: '0.9rem',
+                            color: '#fff',
+                            backgroundColor: 'var(--bg-tertiary)',
+                            border: '1px solid var(--text-tertiary)'
+                        }}
                     >
                         WhatsApp
                     </button>
@@ -101,7 +107,12 @@ export function ResultsView({ score, total, onRestart }) {
                     <button
                         className="glass-panel"
                         onClick={handleCopy}
-                        style={{ padding: '12px 0', fontSize: '0.9rem' }}
+                        style={{
+                            padding: '12px 0',
+                            fontSize: '0.9rem',
+                            backgroundColor: 'var(--bg-tertiary)',
+                            border: '1px solid var(--text-tertiary)'
+                        }}
                     >
                         {copied ? 'Copied!' : 'Copy Link'}
                     </button>
@@ -111,7 +122,13 @@ export function ResultsView({ score, total, onRestart }) {
                 <button
                     className="glass-panel"
                     onClick={handleNativeShare}
-                    style={{ padding: '12px 0', fontSize: '0.9rem', background: 'var(--gradient-glass)' }}
+                    style={{
+                        padding: '12px 0',
+                        fontSize: '0.9rem',
+                        background: 'var(--gradient-glass)',
+                        border: '1px solid var(--text-tertiary)',
+                        color: 'white'
+                    }}
                 >
                     Share (Instagram / More)
                 </button>

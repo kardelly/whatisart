@@ -18,6 +18,7 @@
   /* White as primary action on dark for high contrast/confidence */
   --accent-text: #111111;
   --accent-subtle: #333333;
+  --gradient-glass: linear-gradient(145deg, #333333 0%, #222222 100%);
 
   /* Functional Colors */
   --success-color: #38A169;
