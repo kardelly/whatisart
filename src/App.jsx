@@ -11,34 +11,30 @@ function App() {
   const [sessionQuestions, setSessionQuestions] = useState([])
 
   const startQuiz = () => {
-    // Session Logic: Create a Mixed Deck
-    const uniqueMap = new Map()
+    // Session Logic: 1 pair per round (2 cards)
+    // Use a Map to get unique pieces by their base ID (ignoring the '_2' duplicates)
+    const uniquePieces = new Map()
     questionPool.forEach(q => {
       const baseId = q.id.replace('_2', '')
-      if (!uniqueMap.has(baseId)) uniqueMap.set(baseId, q)
+      if (!uniquePieces.has(baseId)) {
+        uniquePieces.set(baseId, q)
+      }
     })
 
-    const uniques = Array.from(uniqueMap.values())
-    const selectedPairs = uniques.sort(() => Math.random() - 0.5).slice(0, 5)
-
-    let deck = []
-    selectedPairs.forEach(pair => {
-      deck.push({
-        id: pair.images.find(i => i.type === 'real').id,
-        src: pair.images.find(i => i.type === 'real').src,
-        type: 'real',
-        title: pair.title,
-        explanation: pair.explanation
-      })
-      deck.push({
-        id: pair.images.find(i => i.type === 'ai').id,
-        src: pair.images.find(i => i.type === 'ai').src,
-        type: 'ai',
-        title: pair.title,
-        explanation: pair.explanation
-      })
+    const deck = Array.from(uniquePieces.values()).map(piece => {
+      // Pick one random image from this piece (Real or AI)
+      const randomImg = piece.images[Math.floor(Math.random() * piece.images.length)]
+      return {
+        id: randomImg.id,
+        src: randomImg.src,
+        type: randomImg.type,
+        title: piece.title,
+        artist: piece.artist,
+        explanation: piece.explanation
+      }
     })
 
+    // Shuffle the 10 unique pieces
     setSessionQuestions(deck.sort(() => Math.random() - 0.5))
     setGameState('quiz')
   }
