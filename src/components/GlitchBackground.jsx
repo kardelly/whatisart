@@ -48,6 +48,9 @@ export function GlitchBackground({ isIntense }) {
             className={`glitch-container ${isIntense ? 'intense' : ''} ${isLosingSignal ? 'signal-loss' : ''} ${isTransitioning ? 'transitioning' : ''}`}
             style={{ backgroundImage: `url(${images[currentImage]})` }}
         >
+            {/* Black Filter Overlay */}
+            <div className="black-overlay" />
+
             {/* Base Layer */}
             <div className="glitch-img" style={{ backgroundImage: `url(${images[currentImage]})` }} />
 

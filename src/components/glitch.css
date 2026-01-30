@@ -46,6 +46,19 @@
     pointer-events: none;
 }
 
+/* Global Black Filter Overlay */
+.black-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    /* Deep black filter */
+    z-index: 15;
+    pointer-events: none;
+}
+
 /* Technical Grid */
 .brutalist-grid {
     position: absolute;
@@ -60,7 +73,7 @@
     opacity: 0.4;
 }
 
-/* Base Image Layer (Dark & Grayscale) */
+/* Base Image Layer (Extreme Dark) */
 .glitch-img {
     position: absolute;
     top: 0;
@@ -70,8 +83,9 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.15;
-    filter: grayscale(100%) contrast(180%) brightness(0.6);
+    opacity: 0.08;
+    /* Near-total void */
+    filter: grayscale(100%) contrast(150%) brightness(0.5);
     transform: translate3d(0, 0, 0);
     transition: opacity 0.1s;
     animation: signal-flicker 4s infinite steps(1);
@@ -83,32 +97,32 @@
     30%,
     70%,
     100% {
-        opacity: 0.15;
+        opacity: 0.08;
     }
 
     5%,
     35%,
     75% {
-        opacity: 0.05;
+        opacity: 0.02;
     }
 
     2% {
-        opacity: 0.3;
+        opacity: 0.15;
         transform: translateX(5px);
     }
 }
 
 /* Signal Loss: Hide image, show only static */
 .glitch-container.signal-loss .glitch-img {
-    opacity: 0.02;
-    filter: invert(100%) brightness(2.0);
+    opacity: 0.01;
+    filter: invert(100%) brightness(1.5);
 }
 
 .glitch-container.transitioning .glitch-img {
     animation: tv-roll-brutalist 0.4s steps(4);
 }
 
-/* RGB Glitch Layers (Exclusion Style) */
+/* RGB Glitch Layers (Exclusion Style - Dimmed) */
 .glitch-layer {
     position: absolute;
     top: 0;
@@ -126,22 +140,23 @@
 /* Layer 1 - Harsh Exclusion */
 .glitch-layer:nth-of-type(1) {
     animation: glitch-anim-1 0.4s infinite steps(2) alternate-reverse;
-    opacity: 0.6;
-    filter: contrast(2.5) brightness(1.5);
+    opacity: 0.3;
+    /* Toned down for black filter */
+    filter: contrast(2.0) brightness(1.2);
 }
 
 /* Layer 2 - Displacement */
 .glitch-layer:nth-of-type(2) {
     animation: glitch-anim-2 0.7s infinite steps(3) alternate;
-    opacity: 0.4;
-    filter: contrast(1.5);
+    opacity: 0.2;
+    filter: contrast(1.2);
 }
 
 /* Layer 3 - Large Block Glitch */
 .glitch-layer:nth-of-type(3) {
     animation: glitch-anim-3 3s infinite steps(1);
-    opacity: 0.5;
-    filter: invert(100%) contrast(300%);
+    opacity: 0.3;
+    filter: invert(100%) contrast(200%);
 }
 
 @keyframes glitch-anim-1 {
@@ -187,7 +202,7 @@
     10% {
         transform: translate3d(40px, 0, 0);
         clip-path: inset(30% 0 30% 0);
-        opacity: 0.8;
+        opacity: 0.4;
     }
 
     11% {
@@ -197,7 +212,7 @@
     40% {
         transform: translate3d(-45px, 0, 0);
         clip-path: inset(65% 0 15% 0);
-        opacity: 0.6;
+        opacity: 0.3;
     }
 
     41% {
@@ -227,15 +242,16 @@
     width: 200%;
     height: 200%;
     background: url('https://grainy-gradients.vercel.app/noise.svg');
-    opacity: 0.12;
-    z-index: 5;
+    opacity: 0.1;
+    z-index: 20;
+    /* Above black overlay */
     pointer-events: none;
     animation: static-flicker-primary 0.05s steps(2) infinite;
 }
 
 /* Second Noise Layer (Moving) */
 .noise-flicker.move {
-    opacity: 0.06;
+    opacity: 0.05;
     background-size: 50% 50%;
     animation: static-flicker-secondary 6s linear infinite;
 }
@@ -276,10 +292,10 @@
     background: repeating-linear-gradient(to bottom,
             transparent 0px,
             transparent 2px,
-            rgba(255, 255, 255, 0.05) 2px,
-            rgba(255, 255, 255, 0.05) 4px);
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px);
     background-size: 100% 4px;
-    z-index: 20;
+    z-index: 25;
     pointer-events: none;
 }
 
@@ -301,7 +317,7 @@
 
 @keyframes flash-brutalist {
     0% {
-        opacity: 1;
+        opacity: 0.5;
     }
 
     100% {
